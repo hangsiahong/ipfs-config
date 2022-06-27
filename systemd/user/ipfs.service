@@ -1,0 +1,11 @@
+[Unit]
+Description=InterPlanetary File System (IPFS) daemon
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/ipfs daemon --routing=dhtclient
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

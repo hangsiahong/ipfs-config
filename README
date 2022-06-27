@@ -1,0 +1,17 @@
+If you are ROOT!
+create new user:
+	1. useradd -m -G wheel -s /bin/bash ipfs-node
+	2. passwd ipfs-node
+	3. echo "%wheel   ALL=(ALL)   ALL" >> /etc/sudoers
+	4. su - ipfs-node
+	5. sudo pacman -Syu go go-ipfs nginx certbot-nginx
+	6. echo -e "/key/swarm/psk/1.0.0/\n/base16/\n$(tr -dc 'a-f0-9' < /dev/urandom | head -c64)" ~/.ipfs/swarm.key
+	7. ipfs init
+	8. ipfs bootstrap rm all
+	7. ipfs bootstrap add /ip4/{IP}/tcp/4001/ipfs/{PEERID}
+	8. sudo cp systemd/user/ipfs.service /etc/systemd/user/ipfs.service
+	9. systemctl enable --user ipfs
+	10. systemctl start --user ipfs
+	11. ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
+	12. Go arch wiki and setup nginx and use the config from this repo
+	13. sudo systemctl enable nginx & sudo systemctl start nginx
